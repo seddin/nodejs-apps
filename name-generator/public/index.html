@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Name Generator Tool</title>
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	</head>
+	<body style="background-color: #343434; color: white; margin: 0 auto; text-align: center;">
+		<h3>Would you like to generate a new name ?</h3>
+		<div>
+			
+			<input type="button" id="clickMe" value="Generate!" onclick="javascript:genName()" style="background-color: #ffc3a0; border: 0; box-shadow: 2px 2px #f08080; font-weight: bold; color: #141a18;"/>
+
+		</div>
+		<script type="text/javascript">
+			var socket = io.connect('http://127.0.0.1:8080');
+
+			function genName(){
+				socket.emit('generateName');
+			}
+			socket.on('nameGenerated', (name)=>{
+				alert(name);
+			})
+		</script>
+	</body>
+</html>
